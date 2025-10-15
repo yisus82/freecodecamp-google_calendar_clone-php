@@ -1,3 +1,7 @@
+<?php
+include 'calendar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +20,13 @@
     <header>
       <h1>📅 Courses Calendar 📅</h1>
     </header>
+
+    <!-- ✅ Success / ❌ Error Messages -->
+    <?php if ($successMessage): ?>
+      <div class="alert success"><?= $successMessage ?></div>
+    <?php elseif ($errorMessage): ?>
+      <div class="alert error"><?= $errorMessage ?></div>
+    <?php endif; ?>
 
     <!-- ⏰ Clock -->
     <div class="clock-container">
