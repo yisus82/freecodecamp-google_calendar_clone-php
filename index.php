@@ -45,21 +45,21 @@ include 'calendar.php';
     </div>
 
     <!-- 📌 Modal -->
-    <div class="modal" id="eventModal">
+    <div class="modal" id="courseModal">
       <div class="modal-content">
 
         <!-- Dropdown Selector -->
-        <div id="eventSelectorWrapper">
-          <label for="eventSelector"><strong>Select Event:</strong></label>
-          <select id="eventSelector">
-            <option disabled selected>Choose Event...</option>
+        <div id="courseSelectorWrapper">
+          <label for="courseSelector"><strong>Select Course:</strong></label>
+          <select id="courseSelector">
+            <option disabled selected>Choose Course...</option>
           </select>
         </div>
 
         <!-- 📝 Form -->
-        <form method="POST" id="eventForm">
+        <form method="POST" id="courseForm">
           <input type="hidden" name="action" id="formAction" value="add">
-          <input type="hidden" name="event_id" id="eventId">
+          <input type="hidden" name="course_id" id="courseId">
 
           <label for="courseName">Course Title:</label>
           <input type="text" name="course_name" id="courseName" required>
@@ -85,7 +85,7 @@ include 'calendar.php';
         <!-- 🗑️ Delete -->
         <form method="POST">
           <input type="hidden" name="action" value="delete">
-          <input type="hidden" name="event_id" id="deleteEventId">
+          <input type="hidden" name="course_id" id="deleteCourseId">
           <button type="submit" class="submit-btn">🗑️ Delete</button>
         </form>
 

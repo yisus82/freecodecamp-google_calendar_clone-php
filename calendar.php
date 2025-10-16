@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add')
       // Close the statement
       $stmt->close();
 
-      // Refresh the page to show the new event
+      // Refresh the page to show the new course
       header("Location: {$_SERVER['PHP_SELF']}?success=1");
       exit();
     } else {
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add')
 
 // Handle editing an existing course
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit') {
-  $eventId = intval($_POST['event_id'] ?? 0);
+  $courseId = intval($_POST['course_id'] ?? 0);
   $courseName = trim($_POST['course_name'] ?? '');
   $instructorName = trim($_POST['instructor_name'] ?? '');
   $startDate = $_POST['start_date'] ?? '';
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
   $endTime = $_POST['end_time'] ?? '';
 
   // Validate input
-  if ($eventId <= 0 || empty($courseName) || empty($instructorName) || empty($startDate) || empty($endDate) || empty($startTime) || empty($endTime)) {
+  if ($courseId <= 0 || empty($courseName) || empty($instructorName) || empty($startDate) || empty($endDate) || empty($startTime) || empty($endTime)) {
     // Redirect with error code
     header("Location: {$_SERVER['PHP_SELF']}?error=1");
     exit();
@@ -90,14 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
   } else {
     // Prepare and bind
     $stmt = $conn->prepare('UPDATE courses SET course_name=?, instructor_name=?, start_date=?, end_date=?, start_time=?, end_time=? WHERE id=?');
-    $stmt->bind_param('ssssssi', $courseName, $instructorName, $startDate, $endDate, $startTime, $endTime, $eventId);
+    $stmt->bind_param('ssssssi', $courseName, $instructorName, $startDate, $endDate, $startTime, $endTime, $courseId);
 
     // Execute the statement
     if ($stmt->execute()) {
       // Close the statement
       $stmt->close();
 
-      // Refresh the page to show the new event
+      // Refresh the page to show the new course
       header("Location: {$_SERVER['PHP_SELF']}?success=1");
       exit();
     } else {
@@ -113,23 +113,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
 
 // Handle deleting a course
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
-  $eventId = intval($_POST['event_id'] ?? 0);
+  $courseId = intval($_POST['course_id'] ?? 0);
 
-  if ($eventId <= 0) {
+  if ($courseId <= 0) {
     // Redirect with generic error
     header("Location: {$_SERVER['PHP_SELF']}?error=4");
     exit();
   } else {
     // Prepare and bind
     $stmt = $conn->prepare('DELETE FROM courses WHERE id=?');
-    $stmt->bind_param('i', $eventId);
+    $stmt->bind_param('i', $courseId);
 
     // Execute the statement
     if ($stmt->execute()) {
       // Close the statement
       $stmt->close();
 
-      // Refresh the page to show the new event
+      // Refresh the page to show the new course
       header("Location: {$_SERVER['PHP_SELF']}?success=1");
       exit();
     } else {
