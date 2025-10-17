@@ -18,7 +18,7 @@ include 'calendar.php';
 
   <body>
     <header>
-      <h1>📅 Courses Calendar 📅</h1>
+      <h1><a href="<?= $_SERVER['PHP_SELF'] ?>">📅 Courses Calendar 📅</a></h1>
     </header>
 
     <!-- ✅ Success / ❌ Error Messages -->
@@ -37,9 +37,9 @@ include 'calendar.php';
     <!-- 📅 Calendar -->
     <div class="calendar">
       <div class="nav-btn-container">
-        <button type="button" class="nav-btn">⏮️</button>
+        <button type="button" class="nav-btn" id="previousMonthButton">⏮️</button>
         <h2 id="monthYear"></h2>
-        <button type="button" class="nav-btn">⏭️</button>
+        <button type="button" class="nav-btn" id="nextMonthButton">⏭️</button>
       </div>
       <div class="calendar-grid" id="calendar"></div>
     </div>
@@ -51,9 +51,7 @@ include 'calendar.php';
         <!-- Dropdown Selector -->
         <div id="courseSelectorWrapper">
           <label for="courseSelector"><strong>Select Course:</strong></label>
-          <select id="courseSelector">
-            <option disabled selected>Choose Course...</option>
-          </select>
+          <select id="courseSelector"></select>
         </div>
 
         <!-- 📝 Form -->
@@ -79,20 +77,39 @@ include 'calendar.php';
           <label for="endTime">End Time:</label>
           <input type="time" name="end_time" id="endTime" required>
 
-          <button type="submit">💾 Save</button>
+          <button type="submit" class="submit-btn">💾 Save</button>
         </form>
 
         <!-- 🗑️ Delete -->
-        <form method="POST">
-          <input type="hidden" name="action" value="delete">
-          <input type="hidden" name="course_id" id="deleteCourseId">
-          <button type="submit" class="submit-btn">🗑️ Delete</button>
-        </form>
+        <button type="button" class="delete-btn" id="deleteButton">🗑️ Delete</button>
 
         <!-- ❌ Cancel -->
-        <button type="button" class="submit-btn">❌ Cancel</button>
+        <button type="button" class="cancel-btn" id="cancelButton">❌ Cancel</button>
       </div>
     </div>
+
+    <!-- Confirm delete course -->
+    <div class="modal" id="deleteModal">
+      <div class="modal-content">
+        <p>Are you sure you want to delete this course?</p>
+        <form method="POST" id="deleteForm">
+          <input type="hidden" name="action" value="delete">
+          <input type="hidden" name="course_id" id="deleteCourseId">
+          <div class="button-container">
+            <button type="button" class="cancel-btn" id="cancelDeleteButton">Cancel</button>
+            <button type="submit" class="delete-btn">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Pass PHP courses data to JavaScript -->
+    <script>
+      const courses = <?= json_encode($courses, JSON_UNESCAPED_UNICODE); ?>;
+    </script>
+
+    <!-- Calendar JavaScript logic -->
+    <script src="calendar.js"></script>
   </body>
 
 </html>

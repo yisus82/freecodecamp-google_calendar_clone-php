@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
       $stmt->close();
 
       // Refresh the page to show the new course
-      header("Location: {$_SERVER['PHP_SELF']}?success=1");
+      header("Location: {$_SERVER['PHP_SELF']}?success=2");
       exit();
     } else {
       // Close the statement
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
       $stmt->close();
 
       // Refresh the page to show the new course
-      header("Location: {$_SERVER['PHP_SELF']}?success=1");
+      header("Location: {$_SERVER['PHP_SELF']}?success=3");
       exit();
     } else {
       // Close the statement

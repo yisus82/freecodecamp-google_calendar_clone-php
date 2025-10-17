@@ -2,11 +2,13 @@
   --primary: #3B82F6;
   --primary-light: #DBEAFE;
   --primary-dark: #1E3A8A;
+  --cancel: #aeaeae;
+  --delete: #b91c1c;
   --background: #F9FaFB;
   --success: #d1fae5;
   --success-text: #065f46;
   --error: #fee2e2;
-  --erro-text: #b91c1c;
+  --error-text: #b91c1c;
 }
 
 * {
@@ -27,6 +29,11 @@ header {
   color: white;
   padding: 2rem 1rem;
   text-align: center;
+}
+
+header h1 a {
+  color: white;
+  text-decoration: none;
 }
 
 /* Clock */
@@ -151,7 +158,7 @@ header {
   transform: scale(1.02);
 }
 
-.course .course {
+.course .course-name {
   font-weight: bold;
   font-size: 13px;
 }
@@ -238,21 +245,32 @@ header {
   cursor: pointer;
 }
 
-.modal-content button[type="submit"] {
+.modal-content .submit-btn {
   background-color: var(--primary);
   color: white;
 }
 
-.submit-btn {
-  background-color: crimson;
+.modal-content .cancel-btn {
+  background-color: var(--cancel);
   color: #FFF;
 }
 
-.modal-content button:last-child {
-  background-color: #e5e7eb;
-  color: #333;
+.modal-content .delete-btn {
+  background-color: var(--delete);
+  color: #FFF;
 }
 
+/* Delete modal */
+#deleteModal {
+  display: none;
+}
+
+#deleteModal .buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 1rem;
+}
 
 /* DropDown for multiple courses */
 #courseSelector {
