@@ -95,7 +95,7 @@ const renderCalendar = date => {
 
     const addElement = document.createElement('button');
     addElement.className = 'overlay-btn';
-    addElement.textContent = '➕ Add';
+    addElement.textContent = '✅ Add';
     addElement.onclick = e => {
       e.stopPropagation();
       openModalForAdd(dateString);
