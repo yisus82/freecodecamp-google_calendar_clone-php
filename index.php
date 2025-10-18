@@ -23,9 +23,15 @@ include 'calendar.php';
 
     <!-- ✅ Success / ❌ Error Messages -->
     <?php if ($successMessage): ?>
-      <div class="alert success"><?= $successMessage ?></div>
+      <div class="alert success">
+        <?= $successMessage ?>
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">✖️</button>
+      </div>
     <?php elseif ($errorMessage): ?>
-      <div class="alert error"><?= $errorMessage ?></div>
+      <div class="alert error">
+        <?= $errorMessage ?>
+        <button class="close-btn" onclick="this.parentElement.style.display='none';">✖️</button>
+      </div>
     <?php endif; ?>
 
     <!-- ⏰ Clock -->
